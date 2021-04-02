@@ -1,0 +1,28 @@
+.main-area{
+    background-color: gainsboro;
+
+       
+}
+.img-temp{
+    height: 650px;
+    width: 100%;
+}
+.temp-row{
+    background-image: url('../../images/i7.jpg') ;
+    height: 650px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.tc{
+    margin:0px;
+    padding: 0px;
+}
+.Type{
+    padding-top: 100px;
+}
+.row1{
+    height: 30px;
+    padding-top:0px;
+    padding-left: 600px;
+    padding-top: 150px;
+}
