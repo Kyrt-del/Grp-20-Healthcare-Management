@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button} from 'react-bootstrap';
-
+import {BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from "react-router-dom";
 import './style.css'
 
 const Navbar = () =>{
@@ -28,10 +28,15 @@ const Navbar = () =>{
                     
                     
                     <div className="btn-group" role="group" aria-label="Basic example">
-                        <Button type="button" variant="info" className="btn btn-secondary">Sigh Up</Button>{' '}
-                        <Button type="button" variant="info" className="btn btn-secondary">Sign In
-                        
-                        </Button>{' '}
+                    <Link to={"/signup"}>
+                        <Button type="button" variant="info" className="btn btn-secondary">
+                            Sigh Up</Button>{' '}
+                            </Link>
+
+
+                        <Link to={"/signin"}>
+                            <Button type="button" variant="info" className="btn btn-secondary">Sign In</Button>
+                        </Link>
                 
                     </div>
                 
