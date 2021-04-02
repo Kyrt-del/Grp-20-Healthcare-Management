@@ -1,0 +1,18 @@
+.temp{
+    height:70px;
+}
+.temp1{
+    justify-content: right;
+    padding-left: 200px;
+}
+.icon{
+    color:white;
+    width: 50px;
+    margin:0px 30px;
+    justify-content: right;
+    block-size: 25px;
+}
+.temp-footer{
+    justify-content: center ;
+    height:70px;
+}
