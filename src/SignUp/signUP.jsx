@@ -9,14 +9,15 @@ import {
   NavDropdown,
   Modal,
 } from "react-bootstrap";
-import "./login.css";
-import logo from "./logo.svg";
+import "./SignUp.css";
+
+import I3 from '../../images/i3.jpg'
 
 class Login extends Component {
   render() {
     return (
       <>
-        <img className="image" src={logo} alt={logo} width="60" height="30" />
+        <img className="image" src={I3} alt={I3} width="60" height="30" />
         <h1 className="text">Sign up for a better life</h1>
         <Form className="form">
           <Form.Row>
