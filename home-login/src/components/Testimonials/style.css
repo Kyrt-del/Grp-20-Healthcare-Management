@@ -1,0 +1,29 @@
+hr.style13 {
+	height: 10px;
+	border: 0;
+    padding:0px;
+    margin-bottom: 30px;
+    width: 180px;
+	box-shadow: 0 10px 10px -10px  #0275d8 inset;
+}
+.h1-temp{
+    padding-top: 100px;
+}
+.temp-border {
+	border-top: 3px double #8c8b8b;
+    width: 800px;
+}
+.c1{
+    height: 400px;
+    background-color:white; 
+    color:white; 
+    justify-content:center;
+    text-align: center;
+    margin:auto;
+    height: 500px;
+    position: center;
+    margin-bottom: 100px;
+}
+.carousel-inner img {
+    margin: auto;
+  }
