@@ -1,0 +1,49 @@
+h1{
+    text-align: center;
+    font-family: 'Kiwi Maru', serif;
+    
+}
+h5{
+    text-align: left;
+    color: blue;
+    
+}
+.tr{
+    width:100%;
+}
+h2{
+    text-align: left;
+    padding-bottom: 5px;
+}
+.col{
+    
+    text-align: center;
+    
+}
+.container{
+    padding:30px 40px 20px 40px;
+
+}
+hr.style2 {
+	border-top: 3px double #8c8b8b;
+    width: 800px;
+}
+.main-text{
+    margin:160px 0px 100px 0px;
+
+}  
+p{
+    text-align: left;
+    opacity: 0.8;
+} 
+hr.style13 {
+	height: 10px;
+	border: 0;
+    padding:0px;
+    margin-bottom: 30px;
+    width: 180px;
+	box-shadow: 0 10px 10px -10px  #0275d8 inset;
+}
+.temp-button{
+    justify-content: left;
+}
