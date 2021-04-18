@@ -9,7 +9,7 @@ const Testimonials = () => {
     return (
         <React.Fragment>
             <h1 className="h1-temp"> Testimonials </h1>
-            <hr class="style13" />
+            <hr className="style13" />
             <br/>
             <div className="carouse-container">
             <Carousel className="cau-temp">
@@ -46,7 +46,7 @@ const Testimonials = () => {
                 </Carousel>
             </div>
             
-            <hr class="style2 temp-border"/>
+            <hr className="style2 temp-border"/>
         </React.Fragment>
     )
 }
