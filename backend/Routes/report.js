@@ -136,12 +136,33 @@ router.post('/medical/disease',
             
 );
 
+router.get('/report/pulseRate', async(req, res, next) => {
+    const abc = req.query.id
 
-
-router.get('/report/pulseRate/:givenID', async(req, res, next) => {
-    let er = await Report.find({$and :[{ patient: req.params.givenID },{pulseRate :{$ne:null}}]}, {pulseRate:1,date:1,_id:0})
+    Report.find({$and :[{ patient: abc},{pulseRate :{$gt:0}}]}, {pulseRate:1,date:1,_id:0})
     .sort({date:-1})
-    .limit(5);
-    res.send(er);
+    .limit(5).then(data => {
+        res.send(data);
+    })
+});
+
+router.get('/medical/medicine', async(req, res, next) => {
+    const abc = req.query.id
+
+    Report.find({patient: abc}, {medicine:1,date:1,_id:0})
+    .sort({date:-1})
+    .then(data => {
+        res.send(data);
+    })
+});
+
+router.get('/medical/disease', async(req, res, next) => {
+    const abc = req.query.id
+
+    Report.find({patient: abc}, {disease:1,date:1,_id:0})
+    .sort({date:-1})
+    .then(data => {
+        res.send(data);
+    })
 });
 module.exports = router;
