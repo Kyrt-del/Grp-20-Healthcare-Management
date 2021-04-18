@@ -7,20 +7,20 @@ const Contact = () =>
         <React.Fragment>
           
             <h1 className="contact-h1"> Get in touch </h1>
-          <hr class="style13" />
+          <hr className="style13" />
           <br/>
-          <div class="contact-row">
+          <div className="contact-row">
               <div>
-                  <p class="contact-text">njdsjkfnoifjoisgjisorngosdnobvisnbesiorbnevisrnves</p>
+                  <p className="contact-text">njdsjkfnoifjoisgjisorngosdnobvisnbesiorbnevisrnves</p>
 
               </div>
-              <div class="contact">
+              <div className="contact">
                   <h3>Contact Us </h3>
                   
                   </div>
                  
-                    <h5 class="wrapper-info">info.care@gmail.com</h5>
-                    <h5 class="wrapper-info">9824413747</h5>
+                    <h5 className="wrapper-info">info.care@gmail.com</h5>
+                    <h5 className="wrapper-info">9824413747</h5>
         
 
           </div>

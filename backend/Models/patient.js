@@ -25,10 +25,6 @@ const patientSchema = new Schema({
         type: String,
         trim: true
     },
-    state: {
-        type: String,
-        trim: true
-    },
     contact_number: {
         type: Number,
         required: true,
