@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <React.Fragment>
             <nav className="navbar sticky-top navbar-expand-sm navbar-light ">
-              <a class="navbar-brand" href="/#">
+              <a className="navbar-brand" href="/#">
                 <img src="https://www.tutlane.com/images/categorylogo/bootstrap.png" width="30" height="30" /> Bootstrap</a>
               <div className="temp2">
               <ul className="navbar-nav">

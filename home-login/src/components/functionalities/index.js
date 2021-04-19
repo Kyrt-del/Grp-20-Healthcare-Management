@@ -12,8 +12,8 @@ const Func = () =>{
         
                     
 
-        <div class="row temp-row">
-            <div class="row row1">
+        <div className="row temp-row">
+            <div className="row row1">
         <TypeWriterEffect
                     textStyle={{
                         fontFamily: 'Red Hat Display',
@@ -34,15 +34,15 @@ const Func = () =>{
                     loop={true}
                     nextTextDelay={1000}
                     typeSpeed={30}
-                    class="Type"
+                    className="Type"
                     />
                 </div>
-                <div class="row row2">
-            <div class="col"></div>
-            <div class="col tc"> <CardComp color={"#3090C7"}/> </div>
-            <div class="col tc"> <CardComp color={"#0041C2"}/> </div>
-            <div class="col tc"> <CardComp color={"#15317E"}/></div>
-            <div class="col"></div>
+                <div className="row row2">
+            <div className="col"></div>
+            <div className="col tc"> <CardComp color={"#3090C7"}/> </div>
+            <div className="col tc"> <CardComp color={"#0041C2"}/> </div>
+            <div className="col tc"> <CardComp color={"#15317E"}/></div>
+            <div className="col"></div>
             </div>
         </div>
         
