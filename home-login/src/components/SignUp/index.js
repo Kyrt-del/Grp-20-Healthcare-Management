@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   Navbar,
@@ -14,14 +15,15 @@ import { useState } from "react";
 
 import I3 from '../../images/i3.jpg'
 
-const Login = () => {
+const Signup = () => {
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [address, setAddress] = useState('');
 const [city, setCity] = useState('');
 const [contact, setContact] = useState('');
-console.log(contact);
+
+let history = useHistory();
 const onSubmit = () => {
     const API_URL = "https://healthcaremanagement.herokuapp.com";
     console.log(name);
@@ -41,7 +43,16 @@ const onSubmit = () => {
   };
   console.log("clicked");
   fetch(`${API_URL}/patient/register`, requestOptions)
-      .then(response => console.log(response))
+      .then(response => {
+        console.log(response);
+        if(response.ok && response.status == 200){
+          history.push("/");
+        }
+        else{
+          alert("Please enter valid credentials");
+        }
+      })
+      
 } 
   return (
       <>
@@ -96,4 +107,4 @@ const onSubmit = () => {
 }
 
 
-export default Login;
+export default Signup;
