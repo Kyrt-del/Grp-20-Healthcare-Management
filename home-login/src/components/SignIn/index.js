@@ -55,12 +55,37 @@ const Signin = () => {
         console.log(cookie);
         setCookie("userCookie", cookie);
         history.push("/");
+        return ;
       }
       else{
-        alert(response.err.msg);
+        fetch(`${API_URL}/doctor/login`, requestOptions)
+          .then((response) => response.json())
+          .then((response) => {
+
+            console.log(response);
+            if(response.ok){
+
+              const cookie = {
+                _id: response.data.doctor._id,
+                name: response.data.doctor.name,
+                email: response.data.doctor.email,
+              };
+
+              console.log(cookie);
+              setCookie("userCookie", cookie);
+              history.push("/");
+              return ;
+            }
+            else{
+              alert(response.err.msg);
+            }
+          })
+          .catch(error => console.log(error)); 
+        // alert(response.err.msg);
       }
     })
-    .catch(error => console.log(error));      
+    .catch(error => console.log(error)); 
+
 } 
 
   return (

@@ -9,15 +9,13 @@ import Testimonials from '../Testimonials'
 import Contact from '../contact Us'
 import Footer from '../footer'
 
-
-
-
+/* removed <Header /> 
+  was causing issue
+*/
 
 const Main = () => {
   return (
     <>
-  
-      <Header />
       <Navbar />
       <Func />
       <About />

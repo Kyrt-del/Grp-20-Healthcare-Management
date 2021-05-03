@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import { Button} from 'react-bootstrap';
 import I3 from '../../images/i3.jpg'
 
-
 const PreCard = (props) => {
     return (
         <React.Fragment>
