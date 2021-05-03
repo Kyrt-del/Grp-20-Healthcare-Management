@@ -15,12 +15,11 @@ import { useState } from "react";
 import I3 from '../../images/i3.jpg';
 require("dotenv").config();
 
-const Signup = () => {
+const DoctorSignUp = () => {
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
-const [address, setAddress] = useState('');
-const [city, setCity] = useState('');
+const [private_key, setPrivate_key] = useState('');
 const [contact, setContact] = useState('');
 
 let history = useHistory();
@@ -31,8 +30,7 @@ const onSubmit = () => {
         name: name,
         email: email,
         password: password,
-        address: address,
-        city: city,
+        private_key: private_key,
         contact_number: contact,
     }
     console.log(obj);
@@ -40,10 +38,10 @@ const onSubmit = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(obj)
-  };
+    };
   console.log("clicked", API_URL);
   
-  fetch(`${API_URL}/patient/register`, requestOptions)
+  fetch(`${API_URL}/doctor/register`, requestOptions)
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
@@ -54,8 +52,7 @@ const onSubmit = () => {
         alert(response.err.msg);
       }
     })
-    .catch(error => console.log(error));
-      
+    .catch(error => console.log(error));    
 } 
   return (
       <>
@@ -69,6 +66,7 @@ const onSubmit = () => {
                onChange = {(event) => setName(event.target.value)}/>
             </Col>
           </Form.Row>
+
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Email</Form.Label>
@@ -83,21 +81,17 @@ const onSubmit = () => {
             </Form.Group>
           </Form.Row>
 
-          <Form.Group controlId="formGridAddress1">
-            <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="1234 Main St" 
-            onChange = {(event) => setAddress(event.target.value)}/>
-          </Form.Group>
-
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridCity">
-              <Form.Label>City</Form.Label>
-              <Form.Control onChange = {(event) => setCity(event.target.value)}/>
-            </Form.Group>
-
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Contact Number</Form.Label>
               <Form.Control onChange = {(event) => setContact(event.target.value)}/>
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridZip">
+              <Form.Label>private key</Form.Label>
+              <Form.Control onChange = {(event) => setPrivate_key(event.target.value)}/>
             </Form.Group>
           </Form.Row>
 
@@ -109,5 +103,4 @@ const onSubmit = () => {
     );
 }
 
-
-export default Signup;
+export default DoctorSignUp;
