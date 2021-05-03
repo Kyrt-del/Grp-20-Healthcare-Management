@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button} from 'react-bootstrap';
-import {BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from "react-router-dom";
+import { Button } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from "react-router-dom";
 import './style.css'
 
-const Navbar = () =>{
+const Navbar = () => {
     return (
         <React.Fragment>
             <nav className="navbar fixed navbar-expand-lg navbar-dark bg-primary navbar-temp">
@@ -24,23 +24,21 @@ const Navbar = () =>{
                             <a className="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
-    
-                    
-                    
+
                     <div className="btn-group" role="group" aria-label="Basic example">
-                    <Link to={"/signup"}>
+                    <Link to={"/signup"}>                                                                                                                                                                      
+                        <Button type="button" variant="info" className="btn btn-secondary mr-2">
+                            Sigh Up
+                        </Button>
+                    </Link>
+
+                    <Link to={"/signin"}>
                         <Button type="button" variant="info" className="btn btn-secondary">
-                            Sigh Up</Button>{' '}
-                            </Link>
-
-
-                        <Link to={"/signin"}>
-                            <Button type="button" variant="info" className="btn btn-secondary">Sign In</Button>
-                        </Link>
-                
+                            Sign In
+                        </Button>
+                    </Link>
+            
                     </div>
-                
-
             
             </nav>
 

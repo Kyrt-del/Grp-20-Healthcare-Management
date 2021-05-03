@@ -4,11 +4,11 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
-const Patient = require('../Models/patient');
 const Doctor = require('../Models/doctor');
+const Patient = require('../Models/patient');
 const Report = require('../Models/report');
 
-// Sign-up for patient
+// Sign-up for doctor
 router.post('/register',
     [
         check("name", "Please enter a valid name").notEmpty(),
@@ -47,34 +47,45 @@ router.post('/register',
                 }
                 return res.status(400).send(response);
             }
-            
+
+            if(req.body.private_key == undefined || req.body.private_key !== process.env.DOCTOR_SECRET){
+            	const response = {
+                    ok: false,
+                    data: {
+                    },
+                    err: {
+                        status: 400,
+                        msg: "You can not register, please enter valid private_key"
+                    }
+                }
+                return res.status(400).send(response);
+            }
+
             const { password: plainTextPassword } = req.body;
 
             const salt = await bcrypt.genSaltSync(10);
             const hashedPassword = await bcrypt.hash(plainTextPassword, salt);
 
-            const patient = new Patient({
+            const doctor = new Doctor({
                 name: req.body.name,
                 email: req.body.email,
                 password: hashedPassword,
-                address: req.body.address,
-                city: req.body.city,
                 contact_number: req.body.contact_number,
             });
 
-            const savedPatient = await patient.save();
+            const savedDoctor = await doctor.save();
 
             const response = {
                 ok: true,
                 data: {
                     status: 200,
-                    msg: "User has been registered",
-                    user: savedPatient
+                    msg: "Doctor has been registered",
+                    user: savedDoctor
                 },
                 err: {
                 }
             }
-            res.send(response);
+            res.status(200).send(response);
         } catch (err) {
             const response = {
                 ok: false,
@@ -91,7 +102,7 @@ router.post('/register',
     }
 );
 
-// Sign-in for patient
+// Sign-in for doctor
 router.post("/login",
     [
         check("email", "Please enter a valid email").isEmail(),
@@ -113,21 +124,21 @@ router.post("/login",
         }
 
         try {
-            const patient = await Patient.findOne({ email: req.body.email });
-            if (!patient) {
+            const doctor = await Doctor.findOne({ email: req.body.email });
+            if (!doctor) {
                 const response = {
                     ok: false,
                     data: {
                     },
                     err: {
                         status: 400,
-                        msg: "Patient is not registered"
+                        msg: "Doctor is not registered"
                     }
                 }
                 return res.status(400).send(response);
             }
 
-            const validatePASSWORD = await bcrypt.compare(req.body.password, patient.password);
+            const validatePASSWORD = await bcrypt.compare(req.body.password, doctor.password);
             console.log(validatePASSWORD);
             if (!validatePASSWORD) {
                 const response = {
@@ -146,12 +157,13 @@ router.post("/login",
                 ok: true,
                 data: {
                     status: 200,
-                    msg: "Patient has been Logged In",
-                    patient: patient,
+                    msg: "Doctor has been Logged In",
+                    doctor: doctor,
                 },
                 err: {
                 }
             }
+
             return res.status(200).send(response);
 
         } catch (err) {
@@ -167,51 +179,7 @@ router.post("/login",
             console.log(response);
             res.status(400).send(response);
         }
-    });
-
-// add report for given patiend-id
-
-router.post('/addreport', async (req, res) => {
-    try{
-        const report = new Report({
-            patient: req.body._id,
-            bloodPressure: req.body.bloodPressure,
-            bloodSugar: req.body.bloodSugar,
-            temperature: req.body.temperature,
-            pulseRate: req.body.pulseRate
-        });
-
-        console.log(report);
-
-        await report.save();
-        const patient = await Patient.findById({_id: report.patient});
-        patient.reports.push(report);
-        await patient.save();
-
-        console.log(patient);
-
-        res.status(200).json({ok:true, data: report});
     }
-    catch(err){
-        console.log(err);
-        res.status(400).json({ok:false, err: err});
-    }
-
-});
-
-// get all report for requested email-id.
-router.get('/getreports', async(req, res) => {
-    try{
-        const patient = await Patient.findOne({email: req.body.email});
-        console.log(patient);
-        const report_list = await Report.find({ _id : {$in : patient.reports}});
-
-        res.status(200).json({ok: true, report_list});
-    }
-    catch(err){
-        console.log(err);
-        res.status(400).json({ok:false, err: err});
-    }
-});
+);
 
 module.exports = router;

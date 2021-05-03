@@ -12,8 +12,8 @@ import {
 } from "react-bootstrap";
 import "./SignUp.css";
 import { useState } from "react";
-
-import I3 from '../../images/i3.jpg'
+import I3 from '../../images/i3.jpg';
+require("dotenv").config();
 
 const Signup = () => {
 const [name, setName] = useState('');
@@ -25,7 +25,7 @@ const [contact, setContact] = useState('');
 
 let history = useHistory();
 const onSubmit = () => {
-    const API_URL = "https://healthcaremanagement.herokuapp.com";
+    const API_URL = process.env.REACT_APP_API_URL;
     console.log(name);
     const obj = {
         name: name,
@@ -41,17 +41,20 @@ const onSubmit = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(obj)
   };
-  console.log("clicked");
+  console.log("clicked", API_URL);
+  
   fetch(`${API_URL}/patient/register`, requestOptions)
-      .then(response => {
-        console.log(response);
-        if(response.ok && response.status == 200){
-          history.push("/");
-        }
-        else{
-          alert("Please enter valid credentials");
-        }
-      })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      if(response.ok){
+        history.push("/");
+      }
+      else{
+        alert(response.err.msg);
+      }
+    })
+    .catch(error => console.log(error));
       
 } 
   return (

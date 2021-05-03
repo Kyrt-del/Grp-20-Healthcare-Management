@@ -5,8 +5,7 @@ const medicalSchema = new Schema({
     patient: {
         type: Schema.Types.ObjectId,
         ref: 'Patient'
-    },
-    
+    },    
     medicine: {
         type: String,
         trim: true
