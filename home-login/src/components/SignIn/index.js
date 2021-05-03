@@ -13,15 +13,18 @@ import {
 import "./SignIn.css";
 import I3 from '../../images/i3.jpg'
 import { useState } from "react";
+import { Cookies, useCookies } from "react-cookie";
+require("dotenv").config();
 
 
 const Signin = () => {
   let history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [cookie, setCookie]  = useCookies('userCookie');
+
   const onLogin = () => {
-    const API_URL = "https://healthcaremanagement.herokuapp.com";
+    const API_URL = process.env.REACT_APP_API_URL;
     console.log();
     const obj = {
         email: email,
@@ -33,18 +36,56 @@ const Signin = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(obj)
   };
+
   console.log("clicked");
+
   fetch(`${API_URL}/patient/login`, requestOptions)
-      .then(response => {
-        console.log(response);
-        if(response.ok && response.status == 200){
-          history.push("/");
-        }
-        else{
-          alert(response.err.msg);
-        }
-      })
-      
+    .then((response) => response.json())
+    .then((response) => {
+
+      console.log(response);
+      if(response.ok){
+
+        const cookie = {
+          _id: response.data.patient._id,
+          name: response.data.patient.name,
+          email: response.data.patient.email,
+        };
+
+        console.log(cookie);
+        setCookie("userCookie", cookie);
+        history.push("/");
+        return ;
+      }
+      else{
+        fetch(`${API_URL}/doctor/login`, requestOptions)
+          .then((response) => response.json())
+          .then((response) => {
+
+            console.log(response);
+            if(response.ok){
+
+              const cookie = {
+                _id: response.data.doctor._id,
+                name: response.data.doctor.name,
+                email: response.data.doctor.email,
+              };
+
+              console.log(cookie);
+              setCookie("userCookie", cookie);
+              history.push("/");
+              return ;
+            }
+            else{
+              alert(response.err.msg);
+            }
+          })
+          .catch(error => console.log(error)); 
+        // alert(response.err.msg);
+      }
+    })
+    .catch(error => console.log(error)); 
+
 } 
 
   return (
