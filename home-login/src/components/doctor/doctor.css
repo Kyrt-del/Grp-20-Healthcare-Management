@@ -1,0 +1,28 @@
+.doctor-col-reminder{
+    height:90vh;
+    width:50%;
+    background-color: 	#15317E;
+    border-radius: 1rem; 
+    overflow-y:scroll; 
+}
+.doctor-col-center{
+    height: 90vh;
+    padding: 0px 20px 0px 20px;
+    border-radius: 1rem;
+    background-color: #6d6d6d;
+    margin-left:auto;
+    margin-right:auto;
+}
+.doctor-reminder-text{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px;
+    font-weight:bold;
+    color:white;
+    text-align: center;
+    padding: 30px 0px 10px 0px;
+}
+@media screen and (min-width:760px){
+    .sidebar , .outerbox{
+        height: 100vh;
+    }
+}
