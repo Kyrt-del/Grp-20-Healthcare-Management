@@ -1,0 +1,175 @@
+.pro-body{
+    margin:0px;
+    padding:0px 10px 10px 10px;
+    text-align: center;
+    border-radius: 0.3px;
+}
+.pro-text{
+    padding: 15px 15px 0px 15px;
+    text-align: center;
+    font-weight: 500px;
+}
+.pro-1{
+    margin:25px;
+    
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+
+  cursor: pointer;
+}
+.pro-1:hover{
+    transform: scale(1.05);
+ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+.pro-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding:5px 0px 0px 0px;
+    border-radius: 50%;
+    height:70%;
+}
+.sidebar{
+    margin:0px;
+
+    background-color: rgb(235, 232, 232);
+    border-radius: 1rem;
+}
+@media screen and (min-width:760px){
+    .sidebar , .outerbox{
+        height: 111vh;
+    }
+}
+.patientUI-col-2{
+    width:100%;
+    
+    display: block; 
+}
+.rmdp-wrapper{
+    margin:20px;
+}
+.rmpd-header-plugin{
+    background-color: black !important;
+}
+#bootstrap-overrides .rmpd-header-plugin {
+    background-color: black
+}
+
+.outerbox {
+    border-top: 2px black solid;
+}
+hr.style2 {
+	border-top: 3px double #8c8b8b;
+}
+a{
+    color:black;
+}
+a:hover{
+    text-decoration: none;
+}
+.patient-navbar{
+    background-color: #ffffff;
+    height: 80px;
+}
+.patient-sidebar-items{
+    background: linear-gradient(to left, #a8dfff, #3090C7);
+    color: white;
+    font-weight: bold;
+}
+.patient-clock{
+    color: rgb(0, 0, 0);
+}
+.patient-col-medicine{
+    height: 250px;
+    overflow-y:hidden ;
+}
+.patient-col-conditions{
+    height: 150px;
+    overflow-y:hidden ; 
+}
+.patient-temp-row{
+    height:50px;
+    width: 100%;
+
+}
+.reminder-image{
+    padding-bottom:20px;
+}
+.patient-col-month{
+    height: 100vh;
+    padding: 0px 20px 0px 20px;
+    border-radius: 1rem;
+    background-color: #3090C7;
+    margin-left:auto;
+    margin-right:auto;
+}
+.conditions-right-column{
+    overflow-x: scroll;
+   
+}
+.patient-col-reminder{
+    height:100vh;
+    width:50%;
+    background-color: 	#15317E;
+    border-radius: 1rem; 
+    overflow-y:scroll; 
+}
+.margin-row{
+    margin-left:20px;
+}
+
+hr.partition {
+	height: 10px;
+	border: 0;
+    padding:0px;
+    margin: 30px 0px 0px 0px;
+    width:100%;
+	box-shadow: 0 10px 10px -10px  #0275d8 inset;
+}
+.month-title-text{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px;
+    font-weight:bold;
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+    color:white;
+}
+.reminders-title-text{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px;
+    font-weight:bold;
+    color:white;
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+}
+
+
+.medicine-title-text{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px; 
+    padding:20px 0px 40px 40px;
+    font-weight:bold;
+    text-align: left;
+    width: 50%;
+    
+}
+.medicine-title-button{
+    font-size: 20px;
+    margin-left:auto;
+    margin-right:auto;
+    margin:30px 0px 0px 0px; 
+}
+.condition-title-text{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px;
+    padding:40px 0px 40px 40px;
+    font-weight:bold;
+    text-align: left;
+    width: 50%;
+}
+.container1{
+    background-color: yellow;
+}
