@@ -1,0 +1,17 @@
+/* calendar event */
+.month_default_event_inner {
+    background: #999999;
+    color: #fff;
+    font-size: 12px;
+    padding: 0px 10px;
+    opacity: 0.8;
+    border-radius: 5px;
+
+    /* vertical centering */
+    display: flex;
+    align-items: center;
+}
+
+.event_cell{
+    background: #0000FF;
+}
