@@ -45,7 +45,6 @@ const Signin = () => {
 
       console.log(response);
       if(response.ok){
-
         const cookie = {
           _id: response.data.patient._id,
           name: response.data.patient.name,
@@ -54,7 +53,7 @@ const Signin = () => {
 
         console.log(cookie);
         setCookie("userCookie", cookie);
-        history.push("/");
+        history.push("/patient-dashboard");
         return ;
       }
       else{
@@ -76,12 +75,9 @@ const Signin = () => {
               history.push("/");
               return ;
             }
-            else{
-              alert(response.err.msg);
-            }
           })
           .catch(error => console.log(error)); 
-        // alert(response.err.msg);
+          alert(response.err.msg);
       }
     })
     .catch(error => console.log(error)); 
