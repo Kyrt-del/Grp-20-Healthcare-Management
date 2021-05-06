@@ -20,7 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Chart from './Chart';
-import Deposits from './Deposits';
+import DoctorList from './DoctorList';
 import Orders from './Orders';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -32,6 +32,8 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import BookIcon from '@material-ui/icons/Book';
 import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 import { Cookies, useCookies } from "react-cookie";
+import PendingAppointments from './PendingAppointments';
+import ApprovedAppointments from './ApprovedAppointments';
 require("dotenv").config();
 
 const drawerWidth = 240;
@@ -275,19 +277,25 @@ function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           { isViewData && 
-          <Grid container spacing={3}>
-              <Grid item xs={12} md={8} lg={9}>
               <Chart email = {cookie.userCookie.email}/>
-              </Grid>
-          </Grid>
           }
           <Grid container spacing={3}>
-            {(isDashboard || isAppointment) && 
-              <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-              </Grid>
+            {(isAppointment) && 
+                <DoctorList />
+            }
+            {(isDashboard) &&
+                <Grid item xs={6}>
+                <Paper className={classes.paper}> 
+                <PendingAppointments id = {cookie.userCookie._id}/>
+                </Paper>
+                </Grid>
+            }
+            {(isDashboard) &&
+                <Grid item xs={6}>
+                <Paper className={classes.paper}> 
+                <ApprovedAppointments id = {cookie.userCookie._id}/>
+                </Paper>
+                </Grid>
             }
             {(isAddData) && 
               <Grid item xs={12}>
