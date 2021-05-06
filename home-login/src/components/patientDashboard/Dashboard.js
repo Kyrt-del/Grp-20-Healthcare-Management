@@ -34,6 +34,7 @@ import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 import { Cookies, useCookies } from "react-cookie";
 import PendingAppointments from './PendingAppointments';
 import ApprovedAppointments from './ApprovedAppointments';
+import MedicalList from './MedicalList';
 require("dotenv").config();
 
 const drawerWidth = 240;
@@ -296,6 +297,10 @@ function Dashboard() {
                 <ApprovedAppointments id = {cookie.userCookie._id}/>
                 </Paper>
                 </Grid>
+            }
+            {(isDashboard) && <Typography variant="h5" component="h2" color='primary'> Medicine Prescription</Typography>}
+            {(isDashboard) &&
+                <MedicalList _id = {cookie.userCookie._id}/>
             }
             {(isAddData) && 
               <Grid item xs={12}>
