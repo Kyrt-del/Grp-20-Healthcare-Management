@@ -174,28 +174,31 @@ function Dashboard() {
     setAppointment(false);
   }
 
-  let data = [];
-  const getChart = () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ _id: cookie.userCookie._id }),
-    };
-    console.log("Hello3");
-    console.log(requestOptions);
-    fetch(`${API_URL}/patient/report/pulseRate`, requestOptions)
-      .then((response) => response.json())
-      .then((response) => {
-        data = response;
-        console.log(data);
-      })
-      .catch(error => console.log(error));
+  const getChart = async () => {
+    // return (
+    //   <h1> SMIT </h1>
+    //   );
+    //  const requestOptions = {
+    //    method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ _id: cookie.userCookie._id }),
+    // };
+    // console.log("Hello3");
+    // console.log(requestOptions);
+    // await fetch(`${API_URL}/patient/report/pulseRate`, requestOptions)
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     data = response;
+    //     console.log(data);
+    //   })
+    //   .catch(error => console.log(error));
+    //   console.log("here");
       // return (
       // <Paper className={fixedHeightPaper}>
       //   <Chart data = {data[0]}/>
       // </Paper>
       // );
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -221,7 +224,6 @@ function Dashboard() {
             variant="contained"
             color="secondary"
             type="logout"
-          // disabled={submitting}
           >
             Logout
           </Button>
@@ -272,24 +274,26 @@ function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          { isViewData && 
           <Grid container spacing={3}>
-            {/* Chart */}
-            {(isViewData) && <Grid item xs={12} md={8} lg={9}>
-              {console.log("Hello1")}
-              {getChart()}
-              {console.log("Hello2")}
-              {data}
-            </Grid>}
-            {/* Recent Deposits */}
-            {(isDashboard || isAppointment) && <Grid item xs={12} md={4} lg={3}>
+              <Grid item xs={12} md={8} lg={9}>
+              <Chart email = {cookie.userCookie.email}/>
+              </Grid>
+          </Grid>
+          }
+          <Grid container spacing={3}>
+            {(isDashboard || isAppointment) && 
+              <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <Deposits />
               </Paper>
-            </Grid>}
-            {/* Report Form */}
-            {(isAddData) && <Grid item xs={12}>
+              </Grid>
+            }
+            {(isAddData) && 
+              <Grid item xs={12}>
               <ReportForm />
-            </Grid>}
+              </Grid> 
+            }
           </Grid>
         </Container>
       </main>

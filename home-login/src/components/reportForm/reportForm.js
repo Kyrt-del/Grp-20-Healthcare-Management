@@ -65,7 +65,7 @@ function ReportForm() {
                 <Grid item xs={6}>
                   <Field
                     fullWidth
-                    required
+                    not-required
                     name="BloodPressure_Systolic"
                     component={TextField}
                     type="text"
@@ -75,7 +75,7 @@ function ReportForm() {
                 <Grid item xs={6}>
                   <Field
                     fullWidth
-                    required
+                    not-required
                     name="BloodPressure_Diastolic"
                     component={TextField}
                     type="text"
@@ -86,7 +86,7 @@ function ReportForm() {
                   <Field
                     name="BloodSugar"
                     fullWidth
-                    required
+                    not-required
                     component={TextField}
                     type="text"
                     label="BloodSugar"
@@ -96,7 +96,7 @@ function ReportForm() {
                   <Field
                     name="Temperature"
                     fullWidth
-                    required
+                    not-required
                     component={TextField}
                     type="text"
                     label="Temperature(in Fahrenheit)"
@@ -106,7 +106,7 @@ function ReportForm() {
                   <Field
                     name="PulseRate"
                     fullWidth
-                    required
+                    not-required
                     component={TextField}
                     type="text"
                     label="Pulse Rate"
