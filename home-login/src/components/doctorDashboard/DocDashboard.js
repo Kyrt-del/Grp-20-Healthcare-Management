@@ -19,9 +19,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import Chart from './Chart';
-import DoctorList from './DoctorList';
-import Orders from './Orders';
+import PatientList from './PatientList';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -34,7 +32,7 @@ import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 import { Cookies, useCookies } from "react-cookie";
 import PendingAppointments from './PendingAppointments';
 import ApprovedAppointments from './ApprovedAppointments';
-import MedicalList from './MedicalList';
+import { LocalDiningOutlined } from '@material-ui/icons';
 import { useHistory } from "react-router-dom";
 require("dotenv").config();
 
@@ -119,8 +117,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Dashboard() {
+function DocDashboard() {
   const classes = useStyles();
+  let history = useHistory();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -130,18 +129,14 @@ function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [cookie, setCookie] = useCookies();
-  let history = useHistory();
+
   const [isDashboard, setDashboard] = React.useState(true);
   const [isViewData, setViewData] = React.useState(false);
-  const [isAddData, setAddData] = React.useState(false);
-  const [isDailyJournal, setDailyJournal] = React.useState(false);
   const [isAppointment, setAppointment] = React.useState(false);
 
   const clickDashboard = () => {
     setDashboard(true);
     setViewData(false);
-    setAddData(false);
-    setDailyJournal(false);
     setAppointment(false);
 
   }
@@ -149,32 +144,24 @@ function Dashboard() {
   const clickViewData = () => {
     setDashboard(false);
     setViewData(true);
-    setAddData(false);
-    setDailyJournal(false);
     setAppointment(false);
   }
 
   const clickAddData = () => {
     setDashboard(false);
     setViewData(false);
-    setAddData(true);
-    setDailyJournal(false);
     setAppointment(false);
   }
 
   const clickAppointment = () => {
     setDashboard(false);
     setViewData(false);
-    setAddData(false);
-    setDailyJournal(false);
     setAppointment(true);
   }
 
   const clickDailyJournal = () => {
     setDashboard(false);
     setViewData(false);
-    setAddData(false);
-    setDailyJournal(true);
     setAppointment(false);
   }
 
@@ -198,10 +185,10 @@ function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Patient Dashboard
+            Doctor Dashboard
           </Typography>
           <Typography component="h3" variant="h6" color="inherit" noWrap className={classes.title}>
-            Hi, {cookie.userCookie.name}
+            Hi, Dr. {cookie.userCookie.name}
           </Typography>
           <Button
             variant="contained"
@@ -234,23 +221,13 @@ function Dashboard() {
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem button onClick={clickDailyJournal}>
-              <ListItemIcon>
-                <BookIcon />
-              </ListItemIcon>
-              <ListItemText primary="Daily Journal" />
-            </ListItem>
-            <ListItem button onClick={clickAddData}>
-              <ListItemIcon><AddIcon /></ListItemIcon>
-              <ListItemText primary="Add Data" />
-            </ListItem>
             <ListItem button onClick={clickViewData}>
               <ListItemIcon><BarChartIcon /></ListItemIcon>
               <ListItemText primary="View Data" />
             </ListItem>
             <ListItem button onClick={clickAppointment}>
               <ListItemIcon><AddAlarmIcon /></ListItemIcon>
-              <ListItemText primary="Book Appointment" />
+              <ListItemText primary="Appointments" />
             </ListItem>
           </div>
         }</List>
@@ -258,35 +235,23 @@ function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          { isViewData && 
-              <Chart email = {cookie.userCookie.email}/>
-          }
           <Grid container spacing={3}>
-            {(isAppointment) && 
-                <DoctorList />
+            {(isViewData) && 
+                <PatientList />
             }
-            {(isDashboard) &&
+            {(isAppointment) &&
                 <Grid item xs={6}>
                 <Paper className={classes.paper}> 
                 <PendingAppointments id = {cookie.userCookie._id}/>
                 </Paper>
                 </Grid>
             }
-            {(isDashboard) &&
+            {(isAppointment) &&
                 <Grid item xs={6}>
                 <Paper className={classes.paper}> 
                 <ApprovedAppointments id = {cookie.userCookie._id}/>
                 </Paper>
                 </Grid>
-            }
-            {(isDashboard) && <Typography variant="h5" component="h2" color='primary'> Medicine Prescription</Typography>}
-            {(isDashboard) &&
-                <MedicalList _id = {cookie.userCookie._id}/>
-            }
-            {(isAddData) && 
-              <Grid item xs={12}>
-              <ReportForm />
-              </Grid> 
             }
           </Grid>
         </Container>
@@ -295,4 +260,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DocDashboard;

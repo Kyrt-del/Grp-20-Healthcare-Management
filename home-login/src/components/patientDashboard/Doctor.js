@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Doctor({name,email,key}) {
+export default function Doctor({name,email,id}) {
   const [cookie, setCookie] = useCookies();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -53,18 +53,19 @@ export default function Doctor({name,email,key}) {
   };
 
   const submitAppointment = async() => {
-    console.log(selectedDate);
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             date: selectedDate,
-            doctor: key,
+            doctor: id,
             doctorName: name,
             patientName: cookie.userCookie.name,
             patient: cookie.userCookie._id
         })
       };
+      console.log(id);
+      console.log(requestOptions);
       const ac = new AbortController();
       await fetch(`${API_URL}/patient/addappointment`, requestOptions)
         .then((response) => response.json())
@@ -75,7 +76,7 @@ export default function Doctor({name,email,key}) {
   }
 
   return (
-    <Card className={classes.root} variant="elevated" key = {key}>
+    <Card className={classes.root} variant="elevated" key = {id}>
       <CardContent>
         <Typography variant="h5" component="h2">
           {name}

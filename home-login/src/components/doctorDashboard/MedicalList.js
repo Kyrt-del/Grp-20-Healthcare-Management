@@ -12,37 +12,30 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Title from './Title';
 import { useEffect, useState } from "react";
-import Doctor from './Doctor'
+import Medical from './Medical';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function preventDefault(event) {
   event.preventDefault();
 }
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//   },
-// }));
-
-export default function DoctorList() {
+export default function MedicalList({_id}) {
   const [list,setList] = React.useState([]);
   let data = [];
   useEffect(async () => {
+    console.log(_id);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+          _id: _id,
+      })
     };
     const ac = new AbortController();
-    await fetch(`${API_URL}/patient/getdoctors`, requestOptions)
+    await fetch(`${API_URL}/patient/getmedicals`, requestOptions)
       .then((response) => response.json())
       .then((response) => {
-        data = response.data;
+        data = response.medical_list;
       })
       .catch(error => console.log(error));
     setList(data);
@@ -53,17 +46,18 @@ export default function DoctorList() {
   const loopfunc = () => {
     const arr = []
     for(let i = 0; i < list.length; i++){
-      arr.push(<Grid item xs={6} sm={3}><Doctor name = {list[i].name} email = {list[i].email} id = {list[i]._id} /></Grid>);
+      arr.push(<Grid container spacing = {3}><Grid item xs={12} sm={3}><Medical props = {list[i]} /></Grid></Grid>);
     }
     return arr;
   }
 
-  // const classes = useStyles();
   return (
     <React.Fragment>
-      <Grid container spacing={3}>
+      <Container maxWidth="lg">
+      
         {loopfunc()}
-      </Grid>
+        
+      </Container>
     </React.Fragment>
   );
 }

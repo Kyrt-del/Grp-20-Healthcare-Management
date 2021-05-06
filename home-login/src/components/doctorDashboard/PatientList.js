@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Title from './Title';
 import { useEffect, useState } from "react";
-import Doctor from './Doctor'
+import Patient from './Patient'
 const API_URL = process.env.REACT_APP_API_URL;
 
 function preventDefault(event) {
@@ -30,7 +30,7 @@ function preventDefault(event) {
 //   },
 // }));
 
-export default function DoctorList() {
+export default function PatientList() {
   const [list,setList] = React.useState([]);
   let data = [];
   useEffect(async () => {
@@ -39,7 +39,7 @@ export default function DoctorList() {
       headers: { 'Content-Type': 'application/json' },
     };
     const ac = new AbortController();
-    await fetch(`${API_URL}/patient/getdoctors`, requestOptions)
+    await fetch(`${API_URL}/doctor/getpatients`, requestOptions)
       .then((response) => response.json())
       .then((response) => {
         data = response.data;
@@ -53,7 +53,7 @@ export default function DoctorList() {
   const loopfunc = () => {
     const arr = []
     for(let i = 0; i < list.length; i++){
-      arr.push(<Grid item xs={6} sm={3}><Doctor name = {list[i].name} email = {list[i].email} id = {list[i]._id} /></Grid>);
+      arr.push(<Grid item xs={12} sm={6}><Patient props = {list[i]}/></Grid>);
     }
     return arr;
   }

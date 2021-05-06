@@ -96,7 +96,7 @@ export default function SignIn() {
 
               console.log(cookie);
               setCookie("userCookie", cookie);
-              history.push("/");
+              history.push("/doctor-dashboard");
               return ;
             }
           })
