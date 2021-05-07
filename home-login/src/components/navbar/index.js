@@ -28,20 +28,20 @@ const Navbar = () => {
                     
                     <Link to={"/patient-signup"}>                                                                                                                                                                      
                         <Button type="button" variant="info" className="btn btn-secondary mr-2 btn-sm">
-                            patient Sigh Up
+                            patient Sign Up
                         </Button>
                     </Link>
 
                     <Link to={"/doctor-signup"}>                                                                                                                                                                      
                         <Button type="button" variant="info" className="btn btn-secondary mr-2 btn-sm">
-                            doctor Sigh Up
+                            doctor Sign Up
                         </Button>
                     </Link>
 
 
                     <Link to={"/signin"}>                                                                                                                                                                      
                         <Button type="button" variant="info" className="btn btn-secondary mr-2 btn-sm">
-                            Sigh In
+                            Sign In
                         </Button>
                     </Link>
 

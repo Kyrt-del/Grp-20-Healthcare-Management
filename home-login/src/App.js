@@ -13,6 +13,8 @@ import SignUp from './components/SignUp';
 import DoctorSignUp from './components/doctorSignUp';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from "react-router-dom";
 import Main from './components/Main/main';
+import Dashboard from './components/patientDashboard/Dashboard';
+import DocDashboard from './components/doctorDashboard/DocDashboard';
 
 function App() {
     return ( 
@@ -23,6 +25,8 @@ function App() {
       <Route exact path="/patient-signup" component={SignUp} />
       <Route exact path="/doctor-signup" component={DoctorSignUp} />
       <Route exact path="/signin" component={SignIn} />
+      <Route exact path="/patient-dashboard" component={Dashboard} />
+      <Route exact path="/doctor-dashboard" component={DocDashboard} />
     </Switch>
     </Router> 
     </>
