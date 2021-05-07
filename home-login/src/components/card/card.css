@@ -1,0 +1,36 @@
+.temp-card1{
+    
+    margin:200px 10px 0px 10px;
+    height: 350px;
+    border: none;
+    text-decoration: none;
+    color:white;
+    text-align: center;
+    padding:0px;
+    border-radius: 5%;
+}
+.card-title{
+    color: white;
+    font-family: 'Kiwi Maru', serif;
+    text-align: center;
+    padding-bottom: 10px;
+
+}
+.temp-header{
+    padding:10px;
+    padding-top:70px;
+    padding-bottom: 20px;
+}
+.temp-title{
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.temp-text{
+    text-align: center;
+    padding-bottom: 10px;
+    padding-left:10px;
+    padding-right:10px;
+}

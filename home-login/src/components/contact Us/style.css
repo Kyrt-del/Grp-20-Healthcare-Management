@@ -1,0 +1,28 @@
+hr.style13 {
+	height: 10px;
+	border: 0;
+    padding:0px;
+    margin-bottom: 30px;
+    width: 180px;
+	box-shadow: 0 10px 10px -10px  #0275d8 inset;
+}
+.contact-row{
+    height:400px;
+    text-align: center;
+    justify-content: center;
+}
+.contact-text{
+    text-align: center;
+    padding:10px;
+}
+.contact{
+    font-family: 'Kiwi Maru', serif;
+    padding:20px;
+}
+.wrapper-info{
+    text-align: center;
+    padding:20px;
+}
+.contact-h1{
+    padding-top:100px;
+}
