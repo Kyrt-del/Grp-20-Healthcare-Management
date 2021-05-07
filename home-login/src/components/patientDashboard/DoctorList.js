@@ -14,6 +14,7 @@ import Title from './Title';
 import { useEffect, useState } from "react";
 import Doctor from './Doctor';
 import { SnackbarProvider, useSnackbar } from 'notistack';
+import i16 from '../../images/i16.png';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function preventDefault(event) {
@@ -66,6 +67,12 @@ export default function DoctorList() {
   // const classes = useStyles();
   return (
     <React.Fragment>
+      <Grid container alignContent='center' alignItems='center' justify='flex-start'>
+        <div style={{margin: "auto"}}>
+          <img src = {i16} alt = "" style = {{width: 764, height: "auto", display: "block",marginLeft: "auto",marginRight: "auto"}}></img>
+          <Typography variant="h3" component="h2" style={{color:"#15317E", paddingTop: 25,paddingBottom: 25}} align='center'> Available Doctors</Typography>
+        </div>
+      </Grid>
       <Grid container spacing={3}>
         {loopfunc()}
       </Grid>

@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Title from './Title';
 import { useEffect, useState } from "react";
-import Medical from './Medical'
+import Medical from './Medical';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function preventDefault(event) {

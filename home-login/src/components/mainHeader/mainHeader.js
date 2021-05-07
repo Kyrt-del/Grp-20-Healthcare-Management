@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
-import LiveClockDemo from '../../LiveClockDemo'
-
+import LiveClockDemo from '../../LiveClockDemo';
+import Box from '@material-ui/core/Box';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useRouteMatch } from "react-router-dom";
 
 
@@ -47,13 +47,19 @@ export default function Header(props) {
           {title}
         </Typography>
         <Link to={"/patient-signup"}>
-          <Button size="small">Patient Sign Up</Button>
+        <Box m={1}>
+          <Button size="small" variant="outlined" color="primary">Patient Sign Up</Button>
+        </Box>
         </Link>
-        <Link to={"/doctor-signup"}> 
-          <Button size="small">Doctor Sign Up</Button>
+        <Link to={"/doctor-signup"}>
+        <Box m={1}> 
+          <Button size="small" variant="outlined" color="primary">Doctor Sign Up</Button>
+        </Box>
         </Link>
         <Link to={"/signin"}>
-          <Button size="small">Sign In</Button>
+        <Box m={1}>
+          <Button size="small" variant="outlined" color="primary">Sign In</Button>
+        </Box>
         </Link>
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>

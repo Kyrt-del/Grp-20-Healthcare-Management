@@ -116,6 +116,9 @@ export default function Chart(props) {
   return (
     <React.Fragment>
     <Container maxWidth="lg" className={classes.container}>
+    <Typography component="h2" variant="h2" color="primary" gutterBottom>
+      Analytics
+    </Typography>
     <Grid container spacing={3}>
       <Grid item xs={12} md={4} lg={3}>
         <Typography component="h2" variant="h6" color="primary" gutterBottom>

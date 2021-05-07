@@ -64,7 +64,7 @@ export default function Doctor({props}) {
       <PopupState variant="popover" popupId="demo-popup-popover">
         {(popupState) => (
           <div>
-            <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
+            <Button variant="contained" color="primary" style={{ background: '#15317E' }} {...bindTrigger(popupState)}>
               Show Past Reports
             </Button>
             <Popover
@@ -93,7 +93,7 @@ export default function Doctor({props}) {
       <PopupState variant="popover" popupId="demo-popup-popover">
         {(popupState) => (
           <div>
-            <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
+            <Button variant="contained" color="primary" style={{ background: '#15317E' }} {...bindTrigger(popupState)}>
             View Medicine Prescription
             </Button>
             <Popover
@@ -122,7 +122,7 @@ export default function Doctor({props}) {
       <PopupState variant="popover" popupId="demo-popup-popover">
         {(popupState) => (
           <div>
-            <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
+            <Button variant="contained" color="primary" style={{ background: '#15317E' }} {...bindTrigger(popupState)}>
               Add Medicine Prescription
             </Button>
             <Popover
@@ -151,22 +151,13 @@ export default function Doctor({props}) {
   }
 
   return (
-    <Card className={classes.root} variant="elevated" key = {props._id}>
+    <Card style={{ background: '#bbc9f0' }} className={classes.root} variant="elevated" key = {props._id}>
       <CardContent>
         <Typography variant="h5" component="h2">
           Name: {props.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          Email: {props.email}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          Contact: {props.contact_number}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          Address: {props.address}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          City: {props.city}
+        <Typography className={classes.pos} color="default">
+          Email: {props.email}<br />Contact: {props.contact_number}<br />Address: {props.address}<br />City: {props.city}
         </Typography>
       </CardContent>
       <CardActions>

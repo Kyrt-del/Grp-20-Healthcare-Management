@@ -61,6 +61,7 @@ export default function PatientList() {
   // const classes = useStyles();
   return (
     <React.Fragment>
+      <Typography variant="h3" component="h2" style={{color:"#15317E", paddingTop: 25,paddingBottom: 25}} align='center'> Patient List</Typography>
       <Grid container spacing={3}>
         {loopfunc()}
       </Grid>

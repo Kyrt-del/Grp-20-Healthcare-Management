@@ -38,6 +38,7 @@ import MedicalList from './MedicalList';
 import DoctorSelect from './DoctorSelect';
 import { useHistory } from "react-router-dom";
 import { SnackbarProvider, useSnackbar } from 'notistack';
+import medicine from '../../images/medicine.png';
 require("dotenv").config();
 
 const drawerWidth = 240;
@@ -188,7 +189,7 @@ function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar style={{ background: '#15317E' }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -200,14 +201,15 @@ function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Patient Dashboard
+            Health+
           </Typography>
           <Typography component="h3" variant="h6" color="inherit" noWrap className={classes.title}>
             Hi, {cookie.userCookie.name}
           </Typography>
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
+            style={{ background: '#D2042D' }}
             type="logout"
             onClick={Logout}
           >
@@ -284,7 +286,14 @@ function Dashboard() {
                 </Paper>
                 </Grid>
             }
-            {(isDashboard) && <Typography variant="h5" component="h2" color='primary'> Medicine Prescription</Typography>}
+            {(isDashboard) &&
+              <Grid container alignContent='center' alignItems='center' justify='flex-start'>
+                <div style={{margin: "auto"}}>
+                  <img src = {medicine} alt = "" style = {{width: 382, height: "auto", display: "block",marginLeft: "auto",marginRight: "auto"}}></img>
+                  <Typography variant="h3" component="h2" style={{color:"#15317E", paddingBottom: 50}} align='center'> Medicine Prescriptions</Typography>
+                </div>
+              </Grid>
+            }
             {(isDashboard) &&
                 <MedicalList _id = {cookie.userCookie._id}/>
             }

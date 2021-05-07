@@ -18,6 +18,7 @@ import {
 } from '@material-ui/core';
 import { Cookies, useCookies } from "react-cookie";
 import { SnackbarProvider, useSnackbar } from 'notistack';
+import i13 from '../../images/i13.png';
 
 require("dotenv").config();
 
@@ -102,6 +103,12 @@ function ReportForm() {
       }
 
   return (
+    <React.Fragment>
+      <Grid container alignContent='center' alignItems='center' justify='flex-start'>
+                <div style={{margin: "auto"}}>
+                  <img src = {i13} alt = "" style = {{width: 382, height: "auto", display: "block",marginLeft: "auto",marginRight: "auto"}}></img>
+                </div>
+              </Grid>
     <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
       <CssBaseline />
       <Typography variant="h4" align="center" component="h1" gutterBottom>
@@ -168,6 +175,7 @@ function ReportForm() {
                   <Button
                     variant="contained"
                     color="primary"
+                    style={{ background: '#D2042D' }}
                     type="submit"
                     disabled={submitting}
                   >
@@ -180,6 +188,7 @@ function ReportForm() {
         )}
       />
     </div>
+    </React.Fragment>
   );
 }
 

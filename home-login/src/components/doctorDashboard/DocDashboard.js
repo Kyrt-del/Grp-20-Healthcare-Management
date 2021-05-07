@@ -174,7 +174,7 @@ function DocDashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar style={{ background: '#15317E' }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -186,14 +186,15 @@ function DocDashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Doctor Dashboard
+            Health+
           </Typography>
           <Typography component="h3" variant="h6" color="inherit" noWrap className={classes.title}>
             Hi, Dr. {cookie.userCookie.name}
           </Typography>
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
+            style={{ background: '#D2042D' }}
             type="logout"
             onClick={Logout}
           >
@@ -228,7 +229,7 @@ function DocDashboard() {
             </ListItem>
             <ListItem button onClick={clickAppointment}>
               <ListItemIcon><AddAlarmIcon /></ListItemIcon>
-              <ListItemText primary="Appointments" />
+              <ListItemText primary="Appointment Requests" />
             </ListItem>
           </div>
         }</List>
@@ -241,7 +242,7 @@ function DocDashboard() {
                 <PatientList />
             }
             {(isAppointment) &&
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                 <Paper className={classes.paper}> 
                 <SnackbarProvider maxSnack={3}>
                 <PendingAppointments id = {cookie.userCookie._id}/>
@@ -249,8 +250,8 @@ function DocDashboard() {
                 </Paper>
                 </Grid>
             }
-            {(isAppointment) &&
-                <Grid item xs={6}>
+            {(isDashboard) &&
+                <Grid item xs={12}>
                 <Paper className={classes.paper}> 
                 <ApprovedAppointments id = {cookie.userCookie._id}/>
                 </Paper>

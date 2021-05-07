@@ -112,8 +112,8 @@ export default function PendingAppointments({ id, email }) {
             <TableCell>Patient</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Time</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
+            <TableCell>Accept</TableCell>
+            <TableCell>Reject</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

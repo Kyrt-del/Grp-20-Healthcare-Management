@@ -25,14 +25,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: 'Home', url: '#' },
-  { title: 'Features', url: '#' },
-  { title: 'Precautions', url: '#' },
-  { title: 'Get in Touch', url: '#' },
+  // { title: 'Functionalities', url: '#' },
+  // { title: 'Precautions', url: '#precaution' },
+  // { title: 'Get in Touch', url: '#' },
 ];
 
 const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
+  title: 'We Care',
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
   image: 'https://source.unsplash.com/random',
@@ -110,8 +109,8 @@ export default function Blog() {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <div style={{padding: 30, color:"#15317E", fontSize: 30, textAlign: "center", paddingTop: 50}}>
-            Precautions
+          <div id = "precaution" style={{padding: 30, color:"#15317E", fontSize: 30, textAlign: "center", paddingTop: 50}}>
+          Precautions
           </div>
        
           <Grid container spacing={8}>
