@@ -37,6 +37,7 @@ import ApprovedAppointments from './ApprovedAppointments';
 import MedicalList from './MedicalList';
 import DoctorSelect from './DoctorSelect';
 import { useHistory } from "react-router-dom";
+import { SnackbarProvider, useSnackbar } from 'notistack';
 require("dotenv").config();
 
 const drawerWidth = 240;
@@ -289,7 +290,9 @@ function Dashboard() {
             }
             {(isAddData) && 
               <Grid item xs={12}>
+              <SnackbarProvider maxSnack={3}>
               <ReportForm />
+              </SnackbarProvider>
               </Grid> 
             }
           </Grid>

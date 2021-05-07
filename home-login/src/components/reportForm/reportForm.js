@@ -17,10 +17,13 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 import { Cookies, useCookies } from "react-cookie";
+import { SnackbarProvider, useSnackbar } from 'notistack';
+
 require("dotenv").config();
 
 function ReportForm() {
     const [cookie, setCookie]  = useCookies();
+    const { enqueueSnackbar } = useSnackbar();
     const API_URL = process.env.REACT_APP_API_URL;
     const onSubmit = async values => {
         console.log(values);
@@ -34,13 +37,14 @@ function ReportForm() {
           temperature: values.Temperature,
           pulseRate: values.PulseRate
         }
-        sendmail(report);
+        var sendMail = sendmail(report);
         console.log(report);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(report)
         };
+        enqueueSnackbar('Data Successfully sent');
         fetch(`${API_URL}/patient/addreport`, requestOptions)
             .then((response) => response.json())
             .then((response) => {
@@ -81,7 +85,8 @@ function ReportForm() {
           console.log("Send Mail");
         }
         else{
-          return;
+          enqueueSnackbar('Voila, you seem to be Healthy');
+          return sendMail;
         }
         const requestOptions = {
           method: 'POST',
@@ -92,6 +97,8 @@ function ReportForm() {
           })
         };
         fetch(`${API_URL}/patient/sendmail`, requestOptions)
+        enqueueSnackbar('Gaffer, you need to see your doctor');
+        return sendMail;
       }
 
   return (

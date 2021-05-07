@@ -34,6 +34,7 @@ import PendingAppointments from './PendingAppointments';
 import ApprovedAppointments from './ApprovedAppointments';
 import { LocalDiningOutlined } from '@material-ui/icons';
 import { useHistory } from "react-router-dom";
+import { SnackbarProvider, useSnackbar } from 'notistack';
 require("dotenv").config();
 
 const drawerWidth = 240;
@@ -242,7 +243,9 @@ function DocDashboard() {
             {(isAppointment) &&
                 <Grid item xs={6}>
                 <Paper className={classes.paper}> 
+                <SnackbarProvider maxSnack={3}>
                 <PendingAppointments id = {cookie.userCookie._id}/>
+                </SnackbarProvider>
                 </Paper>
                 </Grid>
             }

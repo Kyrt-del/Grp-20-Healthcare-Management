@@ -25,6 +25,7 @@ import { Cookies, useCookies } from "react-cookie";
 import Chart from './Chart';
 import MedicalList from './MedicalList';
 import MedicineForm from './MedicineForm';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 require("dotenv").config();
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -137,7 +138,9 @@ export default function Doctor({props}) {
             >
               <Box p={2}>
               <Grid item xs={12}>
+              <SnackbarProvider maxSnack={3}>
               <MedicineForm args = {props._id}/>
+              </SnackbarProvider>
               </Grid>
               </Box>
             </Popover>

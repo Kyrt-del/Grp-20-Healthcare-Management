@@ -24,10 +24,12 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker,
   } from '@material-ui/pickers';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 require("dotenv").config();
 
 function MedicineForm({args}) {
     const [cookie, setCookie]  = useCookies();
+    const { enqueueSnackbar } = useSnackbar();
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -52,6 +54,7 @@ function MedicineForm({args}) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(report)
         };
+        enqueueSnackbar('Medicine Added');
         fetch(`${API_URL}/doctor/addmedical`, requestOptions)
             .then((response) => response.json())
             .then((response) => {
@@ -89,7 +92,7 @@ function MedicineForm({args}) {
                 <KeyboardDatePicker
                     margin="normal"
                     id="date-picker-dialog"
-                    label="Date picker dialog"
+                    label="Prescribed Till"
                     format="MM/dd/yyyy"
                     value={selectedDate}
                     onChange={handleDateChange}

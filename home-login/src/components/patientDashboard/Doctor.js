@@ -19,6 +19,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { Cookies, useCookies } from "react-cookie";
+import { SnackbarProvider, useSnackbar } from 'notistack';
 require("dotenv").config();
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -41,6 +42,7 @@ const useStyles = makeStyles({
 
 export default function Doctor({name,email,id}) {
   const [cookie, setCookie] = useCookies();
+  const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -67,6 +69,7 @@ export default function Doctor({name,email,id}) {
       console.log(id);
       console.log(requestOptions);
       const ac = new AbortController();
+      enqueueSnackbar('Appointment Request Sent');
       await fetch(`${API_URL}/patient/addappointment`, requestOptions)
         .then((response) => response.json())
         .then((response) => {

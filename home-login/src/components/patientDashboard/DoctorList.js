@@ -12,7 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Title from './Title';
 import { useEffect, useState } from "react";
-import Doctor from './Doctor'
+import Doctor from './Doctor';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 const API_URL = process.env.REACT_APP_API_URL;
 
 function preventDefault(event) {
@@ -53,7 +54,11 @@ export default function DoctorList() {
   const loopfunc = () => {
     const arr = []
     for(let i = 0; i < list.length; i++){
-      arr.push(<Grid item xs={6} sm={3}><Doctor name = {list[i].name} email = {list[i].email} id = {list[i]._id} /></Grid>);
+      arr.push(<Grid item xs={6} sm={3}>
+        <SnackbarProvider maxSnack={3}>
+          <Doctor name = {list[i].name} email = {list[i].email} id = {list[i]._id} />
+          </SnackbarProvider>
+          </Grid>);
     }
     return arr;
   }

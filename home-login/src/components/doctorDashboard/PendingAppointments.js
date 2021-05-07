@@ -13,11 +13,13 @@ import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import { getDate } from 'date-fns';
 import { render } from '@testing-library/react';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function PendingAppointments({ id, email }) {
 
   const [list, setList] = React.useState([]);
+  const { enqueueSnackbar } = useSnackbar();
   let data = [];
   useEffect(async () => {
     const requestOptions = {
@@ -72,6 +74,7 @@ export default function PendingAppointments({ id, email }) {
       })
     };
     const ac = new AbortController();
+    enqueueSnackbar('Appointment Request Cancelled');
     await fetch(`${API_URL}/doctor/delete-appoint`, requestOptions)
       .then((response) => response.json())
       .then((response) => {
@@ -90,6 +93,7 @@ export default function PendingAppointments({ id, email }) {
       })
     };
     const ac = new AbortController();
+    enqueueSnackbar('Appointment Request Accepted');
     await fetch(`${API_URL}/doctor/approv`, requestOptions)
       .then((response) => response.json())
       .then((response) => {
