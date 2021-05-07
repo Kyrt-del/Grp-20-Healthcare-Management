@@ -21,8 +21,8 @@ require("dotenv").config();
 
 function ReportForm() {
     const [cookie, setCookie]  = useCookies();
+    const API_URL = process.env.REACT_APP_API_URL;
     const onSubmit = async values => {
-        const API_URL = process.env.REACT_APP_API_URL;
         console.log(values);
         const report = {
           _id: cookie.userCookie._id,
@@ -34,6 +34,7 @@ function ReportForm() {
           temperature: values.Temperature,
           pulseRate: values.PulseRate
         }
+        sendmail(report);
         console.log(report);
         const requestOptions = {
             method: 'POST',
@@ -50,6 +51,49 @@ function ReportForm() {
             })
             .catch(error => console.log(error));
       };
+
+      const sendmail = (report) => {
+        var txt = "";
+        var sendMail = false;
+        txt = txt + `Patient ${cookie.userCookie.name} (contact number: ${cookie.userCookie.contact}) has been showing some unusual traits. \nPlease look into the report below and take actions as you see fit.\n\n`;
+        if(report.bloodPressure.systolic !== undefined && (report.bloodPressure.systolic > 140 || report.bloodPressure.systolic < 90)){
+          txt = txt + `Systolic Blood Pressure: ${report.bloodPressure.systolic}mmHg\n`;
+          sendMail = true;
+        }
+        if(report.bloodPressure.diastolic !== undefined && (report.bloodPressure.diastolic > 100 || report.bloodPressure.diastolic < 60)){
+          txt = txt + `Diastolic Blood Pressure: ${report.bloodPressure.diastolic}mmHg\n`;
+          sendMail = true;
+        }
+        if(report.pulseRate !== undefined && (report.pulseRate > 100 || report.pulseRate < 60)){
+          txt = txt + `Pulse Rate: ${report.pulseRate}beats per minute\n`;
+          sendMail = true;
+        }
+        if(report.bloodSugar !== undefined && (report.bloodSugar > 180 || report.bloodSugar < 70)){
+          txt = txt + `Blood Sugar: ${report.bloodSugar} mg/dl\n`;
+          sendMail = true;
+        }
+        if(report.temperature !== undefined && (report.temperature > 101 || report.temperature < 95)){
+          txt = txt + `Temperature: ${report.temperature} F\n`;
+          sendMail = true;
+        }
+        
+        if(sendMail == true){
+          console.log("Send Mail");
+        }
+        else{
+          return;
+        }
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: cookie.userCookie.doctor_email,
+            txt: txt,
+          })
+        };
+        fetch(`${API_URL}/patient/sendmail`, requestOptions)
+      }
+
   return (
     <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
       <CssBaseline />

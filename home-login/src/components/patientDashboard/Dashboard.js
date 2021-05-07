@@ -29,12 +29,13 @@ import ReportForm from '../reportForm/reportForm';
 import AddIcon from '@material-ui/icons/Add';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import BookIcon from '@material-ui/icons/Book';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import AddAlarmIcon from '@material-ui/icons/AddAlarm';
 import { Cookies, useCookies } from "react-cookie";
 import PendingAppointments from './PendingAppointments';
 import ApprovedAppointments from './ApprovedAppointments';
 import MedicalList from './MedicalList';
+import DoctorSelect from './DoctorSelect';
 import { useHistory } from "react-router-dom";
 require("dotenv").config();
 
@@ -134,14 +135,14 @@ function Dashboard() {
   const [isDashboard, setDashboard] = React.useState(true);
   const [isViewData, setViewData] = React.useState(false);
   const [isAddData, setAddData] = React.useState(false);
-  const [isDailyJournal, setDailyJournal] = React.useState(false);
+  const [isDefaultDoctor, setDefaultDoctor] = React.useState(false);
   const [isAppointment, setAppointment] = React.useState(false);
 
   const clickDashboard = () => {
     setDashboard(true);
     setViewData(false);
     setAddData(false);
-    setDailyJournal(false);
+    setDefaultDoctor(false);
     setAppointment(false);
 
   }
@@ -150,7 +151,7 @@ function Dashboard() {
     setDashboard(false);
     setViewData(true);
     setAddData(false);
-    setDailyJournal(false);
+    setDefaultDoctor(false);
     setAppointment(false);
   }
 
@@ -158,7 +159,7 @@ function Dashboard() {
     setDashboard(false);
     setViewData(false);
     setAddData(true);
-    setDailyJournal(false);
+    setDefaultDoctor(false);
     setAppointment(false);
   }
 
@@ -166,15 +167,15 @@ function Dashboard() {
     setDashboard(false);
     setViewData(false);
     setAddData(false);
-    setDailyJournal(false);
+    setDefaultDoctor(false);
     setAppointment(true);
   }
 
-  const clickDailyJournal = () => {
+  const clickDefaultDoctor = () => {
     setDashboard(false);
     setViewData(false);
     setAddData(false);
-    setDailyJournal(true);
+    setDefaultDoctor(true);
     setAppointment(false);
   }
 
@@ -234,11 +235,11 @@ function Dashboard() {
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem button onClick={clickDailyJournal}>
+            <ListItem button onClick={clickDefaultDoctor}>
               <ListItemIcon>
-                <BookIcon />
+              <LocalHospitalIcon color = 'secondary'/>
               </ListItemIcon>
-              <ListItemText primary="Daily Journal" />
+              <ListItemText primary="Default Doctor" />
             </ListItem>
             <ListItem button onClick={clickAddData}>
               <ListItemIcon><AddIcon /></ListItemIcon>
@@ -264,6 +265,9 @@ function Dashboard() {
           <Grid container spacing={3}>
             {(isAppointment) && 
                 <DoctorList />
+            }
+            {(isDefaultDoctor) && 
+                <DoctorSelect />
             }
             {(isDashboard) &&
                 <Grid item xs={6}>

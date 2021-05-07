@@ -73,6 +73,8 @@ export default function SignIn() {
           _id: response.data.patient._id,
           name: response.data.patient.name,
           email: response.data.patient.email,
+          doctor_email: response.data.patient.doctor_email,
+          contact: response.data.patient.contact_number,
         };
 
         console.log(cookie);
