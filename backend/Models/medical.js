@@ -5,18 +5,32 @@ const medicalSchema = new Schema({
     patient: {
         type: Schema.Types.ObjectId,
         ref: 'Patient'
-    },    
-    medicine: {
+    },
+    doctorName: {
         type: String,
         trim: true
-    },
-    disease: {
+    },   
+    medicine: {
         type: String,
         trim: true
     },
     date: {
         type : Date, 
         default : Date.now()
+    },
+    time: {
+        morning : {
+            type : Boolean,
+            default : false
+        },
+        afternoon : {
+            type : Boolean,
+            default : false
+        },
+        night : {
+            type : Boolean,
+            default : false
+        }
     }
 });
 
