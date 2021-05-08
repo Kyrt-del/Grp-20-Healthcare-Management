@@ -3,20 +3,9 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -34,12 +23,19 @@ export default function Footer(props) {
     <footer className={classes.footer}>
       <Container maxWidth="lg">
         <Typography variant="h6" align="center" gutterBottom>
-          {title}
+          Get in Touch
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          {description}
+          Contact Number: +91 7016666107
         </Typography>
-        <Copyright />
+        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+          Email id: group20da2018@gmail.com
+        </Typography>
+        <a href="https://github.com/Kyrt-del/Grp-20-Healthcare-Management" target="_blank">
+          <IconButton>
+            <GitHubIcon />
+          </IconButton>
+        </a>
       </Container>
     </footer>
   );

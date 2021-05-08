@@ -159,8 +159,15 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/doctor-signup" variant="body2">
+                {"Don't have an account? Are you a Doctor? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item>
+              <Link href="/patient-signup" variant="body2">
+                {"Don't have an account? Are you a Patient? Sign Up"}
               </Link>
             </Grid>
           </Grid>

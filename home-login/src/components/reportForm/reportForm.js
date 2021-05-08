@@ -60,7 +60,7 @@ function ReportForm() {
       const sendmail = (report) => {
         var txt = "";
         var sendMail = false;
-        txt = txt + `Patient ${cookie.userCookie.name} (contact number: ${cookie.userCookie.contact}) has been showing some unusual traits. \nPlease look into the report below and take actions as you see fit.\n\n`;
+        txt = txt + `Patient ${cookie.userCookie.name} (email id: ${cookie.userCookie.email}) has been showing some unusual traits. \nPlease look into the report below and take actions as you see fit.\n\n`;
         if(report.bloodPressure.systolic !== undefined && (report.bloodPressure.systolic > 140 || report.bloodPressure.systolic < 90)){
           txt = txt + `Systolic Blood Pressure: ${report.bloodPressure.systolic}mmHg\n`;
           sendMail = true;

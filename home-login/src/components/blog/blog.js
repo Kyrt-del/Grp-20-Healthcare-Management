@@ -10,13 +10,14 @@ import Header from '../mainHeader/mainHeader';
 import MainFeaturedPost from '../mainFeaturedPost/mainFeaturedPost';
 import FeaturedPost from '../featuredPost/featuredPost';
 import Footer from '../mainFooter/mainFooter';
-import Precautions from '../Precautions2/precautions'
-import I3 from '../../images/i8.JPG'
-import I1 from '../../images/i9.JPG'
-import I2 from '../../images/i10.JPG'
-import I0 from '../../images/i11.JPG'
-import C2 from '../../images/c2.jpg'
-import C3 from '../../images/c3.JPG'
+import Precautions from '../Precautions2/precautions';
+import I3 from '../../images/i8.JPG';
+import I1 from '../../images/i9.JPG';
+import I2 from '../../images/i10.JPG';
+import I0 from '../../images/i11.JPG';
+import C2 from '../../images/c2.jpg';
+import C3 from '../../images/c3.JPG';
+import C1 from '../../images/c1.jpg';
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -34,7 +35,7 @@ const mainFeaturedPost = {
   title: 'We Care',
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
+  image: C1,
   imgText: 'main image description',
   linkText: 'Continue reading…',
 };
