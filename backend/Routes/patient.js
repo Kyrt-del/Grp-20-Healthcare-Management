@@ -7,6 +7,10 @@ const bcrypt = require('bcryptjs');
 const Patient = require('../Models/patient');
 const Doctor = require('../Models/doctor');
 const Report = require('../Models/report');
+const Medical = require('../Models/medical');
+const Appointment = require('../Models/appointment');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 // Sign-up for patient
 router.post('/register',
@@ -200,13 +204,168 @@ router.post('/addreport', async (req, res) => {
 });
 
 // get all report for requested email-id.
-router.get('/getreports', async(req, res) => {
+router.post('/getreports', async(req, res) => {
     try{
         const patient = await Patient.findOne({email: req.body.email});
         console.log(patient);
         const report_list = await Report.find({ _id : {$in : patient.reports}});
 
         res.status(200).json({ok: true, report_list});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/report/pulseRate', async(req, res) => {
+    const patient_id = req.body._id
+
+    Report.find({$and :[{ patient: patient_id},{pulseRate :{$gt:0}}]}, {pulseRate:1,date:1,_id:0})
+    .sort({date:-1})
+    .limit(10).then(data => {
+        res.send(data);
+    })
+});
+
+router.post('/getmedicals', async(req, res) => {
+    try{
+        console.log(req.body._id);
+        const medical_list = await Medical.find({patient :req.body._id});
+        res.status(200).json({ok: true, medical_list});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.delete('/deletemedical', async (req, res) => {
+    try{
+      await Medical.deleteOne({_id : req.body._id}, (err, output) => {
+        if(err){
+            console.log(err);
+        }
+        console.log(output);
+      });
+      res.status(200).json({ok: true});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/addappointment', async(req, res) => {
+    try{
+        const appointment = new Appointment({
+            patient: req.body.patient,
+            doctor: req.body.doctor,
+            date: req.body.date,
+            patientName: req.body.patientName,
+            doctorName: req.body.doctorName
+        });
+
+        await appointment.save();
+        console.log(appointment);
+        res.status(200).json({ok:true, data: appointment});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/pending-appointment', async(req, res) => {
+    try{
+        const list = await Appointment.find({ $and : [{ patient : req.body.id }, {isApproved :false }] });
+        console.log(list);
+        res.status(200).json({ok:true, data: list});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/approved-appointment', async(req, res) => {
+    try{
+        const list = await Appointment.find({ $and : [{ patient : req.body.id }, {isApproved :true }] });
+        console.log(list);
+        res.status(200).json({ok:true, data: list});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/getdoctors', async(req, res) => {
+    try{
+        const list = await Doctor.find({}, {_id : 1, name: 1, email: 1});
+        res.status(200).json({ok : true, data : list});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/getdata', async(req, res) => {
+    try{
+        const patient = Patient.find({_id : req.body._id});
+        res.status(200).json({ok :true, data : patient});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.put('/setdoctor', async(req, res) => {
+    try{
+        await Patient.findOneAndUpdate({ _id: req.body._id}, { $set : {doctor_email : req.body.doctor_email} })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+        res.status(200).json({ok : true});
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({ok:false, err: err});
+    }
+});
+
+router.post('/sendmail', async(req, res) => {
+    try {
+    var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+        user: 'group20da2018@gmail.com',
+        pass: 'dummyPassword20'
+    }
+    }));
+    console.log(req.body);
+    var mailOptions = {
+      from: 'group20da2018@gmail.com',
+      to: req.body.email,
+      subject: 'IMPORTANT: Patient Abnormality Alert!',
+      text: req.body.txt
+    };
+
+    let ok = false;
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ');
+          ok = true;
+        }
+    });
+      console.log( ok ) ;
+    res.status(200).json({ok:ok});
+
     }
     catch(err){
         console.log(err);
