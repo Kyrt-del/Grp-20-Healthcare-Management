@@ -53,7 +53,7 @@ const featuredPosts = [
     title: 'Monitor your health regualary',
     
     description:
-      'something...',
+      'This helps patient to know at the right time what treatment he needs from doctor.',
     image: C3,
     imageText: 'Image Text',
   },
@@ -97,10 +97,11 @@ export default function Blog() {
         
           <MainFeaturedPost post={mainFeaturedPost} />
           <div style={{padding: 20, color:"#15317E", fontSize: 30, textAlign: "center"}}>
-            About
+            Aim
           </div>
           <div style={{paddingBottom: 30,paddingTop: 10, fontSize: 15, textAlign: "center"}}>
           Being healthy should be part of your overall lifestyle. Living a healthy lifestyle can help prevent chronic diseases and long-term illnesses. Feeling good about yourself and taking care of your health are important for your self-esteem and self-image. Maintain a healthy lifestyle by doing what is right for your body.
+          The objective of patient monitoring is to have a quantitative assessment of the important physiological variables of the patients during critical periods of their biological functions. For diagnostic and research purposes, it is necessary to know their actual value or trend of change.
           </div>
           <div style={{padding: 30, color:"#15317E", fontSize: 30, textAlign: "center"}}>
             Functionalities
