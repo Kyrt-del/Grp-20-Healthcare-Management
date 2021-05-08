@@ -14,13 +14,33 @@ import Title from './Title';
 import { useEffect, useState } from "react";
 import DoctorSelectUtil from './DoctorSelectUtil';
 import { SnackbarProvider, useSnackbar } from 'notistack';
+import { Cookies, useCookies } from "react-cookie";
 const API_URL = process.env.REACT_APP_API_URL;
+require("dotenv").config();
 
 function preventDefault(event) {
   event.preventDefault();
 }
 
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
+
 export default function DoctorList() {
+  const [cookie, setCookie] = useCookies();
   const [list,setList] = React.useState([]);
   let data = [];
   useEffect(async () => {
@@ -52,12 +72,25 @@ export default function DoctorList() {
     return arr;
   }
 
-  // const classes = useStyles();
+  const classes = useStyles();
   return (
     <React.Fragment>
+      <Card className={classes.root}><CardContent>
+      {cookie.userCookie.doctor_email ?
+      <Typography paddingLeft = {2} component="h2" variant="h5" color="default" gutterBottom>
+      Your default doctor's email id is {cookie.userCookie.doctor_email}
+      </Typography> :
+      <Typography paddingLeft = {2} component="h2" variant="h6" color="default" gutterBottom>
+      No default doctor set yet. <br />We would suggest you to select a default doctor, so that a doctor can be notified if there is some problems with your health conditions.
+      </Typography>}</CardContent></Card>
+      <Container>
+      <Typography component="h2" variant="h3" color="primary" gutterBottom>
+      List of Doctors
+      </Typography>
       <Grid container spacing={3}>
         {loopfunc()}
       </Grid>
+      </Container>
     </React.Fragment>
   );
 }

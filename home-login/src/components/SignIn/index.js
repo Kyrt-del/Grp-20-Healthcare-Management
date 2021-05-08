@@ -69,7 +69,7 @@ export default function SignIn() {
       console.log(response);
       if(response.ok){
         userExist = true;
-        const cookie = {
+        const response_cookie = {
           _id: response.data.patient._id,
           name: response.data.patient.name,
           email: response.data.patient.email,
@@ -77,8 +77,8 @@ export default function SignIn() {
           contact: response.data.patient.contact_number,
         };
 
+        setCookie("userCookie", response_cookie);
         console.log(cookie);
-        setCookie("userCookie", cookie);
         history.push("/patient-dashboard");
         return ;
       }
