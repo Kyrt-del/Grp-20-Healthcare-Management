@@ -69,7 +69,7 @@ function MedicineForm({args}) {
     <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
       <CssBaseline />
       <Typography variant="h4" align="center" component="h1" gutterBottom>
-        Report Form
+        Medicine Prescription
       </Typography>
       <Form
         onSubmit={onSubmit}

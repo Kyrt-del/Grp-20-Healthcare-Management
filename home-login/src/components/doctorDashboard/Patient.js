@@ -79,7 +79,7 @@ export default function Doctor({props}) {
               }}
             >
               <Box p={2}>
-                <Chart email = {props.email}/>
+                <Chart name = {props.name} email = {props.email}/>
               </Box>
             </Popover>
           </div>

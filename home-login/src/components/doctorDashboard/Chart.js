@@ -119,6 +119,9 @@ export default function Chart(props) {
     <Typography component="h2" variant="h2" color="primary" gutterBottom>
       Analytics
     </Typography>
+    <Typography component="h2" variant="h6" color="primary" gutterBottom>
+          Patient Name: {props.name}
+        </Typography>
     <Grid container spacing={3}>
       <Grid item xs={12} md={4} lg={3}>
         <Typography component="h2" variant="h6" color="primary" gutterBottom>
@@ -188,19 +191,6 @@ export default function Chart(props) {
         </AreaChart>
       </Grid>
     </Grid>
-    {/* <Grid container spacing={3}>
-      <Grid item xs={12} md={4} lg={3}>
-        <h6>Pulse Rate</h6>
-        <LineChart width={1000} height={250} data={items}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tick = {false}/>
-          <YAxis />
-          <Tooltip />
-          <Line type="monotone" dataKey="pulseRate" stroke="#8884d8" connectNulls/>
-        </LineChart>
-      </Grid>
-    </Grid> */}
     <Grid container spacing={3}>
       <Grid item xs={12} md={4} lg={3}>
         <Typography component="h2" variant="h6" color="primary" gutterBottom>
